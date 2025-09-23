@@ -1,6 +1,8 @@
-# Itinera — Map‑based Travel Log
+<p align="center">
+  <img src="./public/logo.svg" width="100"/>
+</p>
 
-![Itinera logo](public/logo.svg)
+# Itinera — Map‑based Travel Log
 
 Log the cities you’ve visited, when you were there, and notes—all on an interactive map.
 
@@ -13,8 +15,6 @@ Why I built it:
 - Practice clean component architecture, Context + Reducer state management, and custom hooks.
 - Work with a map SDK (Leaflet via React‑Leaflet) and real‑world concerns like geolocation, reverse geocoding, and markers.
 - Simulate a client–server app with a JSON API, async loading, and error/empty states.
-
-> Perfect for recruiters: this project shows hands‑on experience with React 18, data fetching, route protection, code‑splitting, and product thinking around a “travel log” use case.
 
 ## Features
 
@@ -38,14 +38,6 @@ Why I built it:
 - Robust UX states
     - Loading spinners for network calls
     - Friendly empty & error messages
-
-## Screenshots
-
-> Assets below are representative images from the project. The app UI is best explored by running locally.
-
-![Product](public/img-product.png)
-
-![Pricing](public/img-pricing.png)
 
 ## Tech stack
 
