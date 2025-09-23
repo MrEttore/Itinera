@@ -1,0 +1,33 @@
+.btn {
+  color: inherit;
+  text-transform: uppercase;
+  padding: 0.9rem 1.8rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.03s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.primary {
+  font-weight: 800;
+  background: var(--gradient-brand);
+  color: #0b1320;
+  box-shadow: 0 6px 14px rgba(47, 194, 139, 0.18),
+    0 1px 3px rgba(0, 0, 0, 0.16) inset;
+}
+
+.back {
+  font-weight: 700;
+  background: var(--glass-bg);
+  color: var(--color-light--2);
+  border: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.btn:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+}

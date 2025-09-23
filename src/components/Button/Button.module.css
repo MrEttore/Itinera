@@ -1,0 +1,69 @@
+.btn {
+  color: inherit;
+  text-transform: uppercase;
+  padding: 0.9rem 1.8rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.03s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.primary,
+.login {
+  font-weight: 800;
+  background: var(--gradient-brand);
+  color: #0b1320;
+  box-shadow: 0 6px 14px rgba(47, 194, 139, 0.18),
+    0 1px 3px rgba(0, 0, 0, 0.16) inset;
+}
+
+.primary:hover,
+.login:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+  transform: translateY(-1px);
+}
+
+.logout {
+  background: var(--glass-bg-strong);
+  border-radius: 999px;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: var(--glass-border);
+}
+
+.back {
+  font-weight: 700;
+  background: var(--glass-bg);
+  color: var(--color-light--2);
+  border: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.position {
+  font-weight: 800;
+  position: absolute;
+  z-index: 1000;
+  font-size: 1.3rem;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gradient-brand);
+  color: #0b1320;
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(32, 144, 129, 0.24);
+}
+
+.position:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+  transform: translateX(-50%) translateY(-1px);
+}

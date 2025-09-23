@@ -1,0 +1,42 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--glass-bg);
+  padding: 1.2rem 1.6rem;
+  border-radius: 16px;
+  border: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.nav a:link,
+.nav a:visited {
+  text-decoration: none;
+  color: var(--color-light--2);
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* CSS Modules feature */
+.nav a:global(.active) {
+  color: #9ae6b4;
+}
+
+a.ctaLink:link,
+a.ctaLink:visited {
+  background: var(--gradient-brand);
+  color: #0b1320;
+  padding: 0.8rem 2rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 20px rgba(47, 194, 139, 0.25);
+}

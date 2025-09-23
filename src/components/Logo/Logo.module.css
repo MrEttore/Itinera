@@ -1,0 +1,27 @@
+.logo {
+  height: 5.2rem;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.25));
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  text-decoration: none;
+}
+
+.wordmark {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  background: linear-gradient(
+    135deg,
+    var(--color-brand--2),
+    #2dd4bf 45%,
+    #60a5fa 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.25));
+}

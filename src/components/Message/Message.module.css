@@ -1,0 +1,14 @@
+.message {
+  text-align: center;
+  font-size: 1.8rem;
+  width: 80%;
+  margin: 2rem auto;
+  font-weight: 600;
+  background: var(--glass-bg);
+  border-radius: 14px;
+  padding: 1.2rem 1.6rem;
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}

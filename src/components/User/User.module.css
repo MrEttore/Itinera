@@ -1,0 +1,25 @@
+.user {
+  position: absolute;
+  top: 4.2rem;
+  right: 4.2rem;
+  background: var(--glass-bg);
+  padding: 1rem 1.4rem;
+  border-radius: 14px;
+  z-index: 999;
+  box-shadow: var(--glass-shadow);
+  border: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-dark--0);
+
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.user img {
+  border-radius: 100px;
+  height: 4rem;
+}
