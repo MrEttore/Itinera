@@ -64,17 +64,20 @@ export function CitiesProvider({ children }) {
     fetchCities();
   }, []);
 
-  async function getCity(id) {
-    if (Number(id) === currentCity.id) return;
-    dispatch({ type: 'loading' });
-    try {
-      const response = await fetch(`${API_URL}/cities/${id}`);
-      const data = await response.json();
-      dispatch({ type: 'city/loaded', payload: data });
-    } catch (error) {
-      dispatch({ type: 'rejected', payload: error.message });
-    }
-  }
+  const getCity = useCallback(
+    async (id) => {
+      if (Number(id) === currentCity.id) return;
+      dispatch({ type: 'loading' });
+      try {
+        const response = await fetch(`${API_URL}/cities/${id}`);
+        const data = await response.json();
+        dispatch({ type: 'city/loaded', payload: data });
+      } catch (error) {
+        dispatch({ type: 'rejected', payload: error.message });
+      }
+    },
+    [currentCity.id],
+  );
 
   async function createCity(newCity) {
     dispatch({ type: 'loading' });
