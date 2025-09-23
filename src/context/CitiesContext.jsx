@@ -1,4 +1,10 @@
-import { useEffect, createContext, useContext, useReducer } from 'react';
+import {
+  useEffect,
+  createContext,
+  useContext,
+  useReducer,
+  useCallback,
+} from 'react';
 
 const API_URL = 'http://localhost:9000';
 
@@ -79,7 +85,7 @@ export function CitiesProvider({ children }) {
     [currentCity.id],
   );
 
-  async function createCity(newCity) {
+  const createCity = async (newCity) => {
     dispatch({ type: 'loading' });
     try {
       const response = await fetch(`${API_URL}/cities`, {
@@ -94,9 +100,9 @@ export function CitiesProvider({ children }) {
     } catch (error) {
       dispatch({ type: 'rejected', payload: error.message });
     }
-  }
+  };
 
-  async function deleteCity(id) {
+  const deleteCity = async (id) => {
     dispatch({ type: 'loading' });
     try {
       await fetch(`${API_URL}/cities/${id}`, {
@@ -106,7 +112,7 @@ export function CitiesProvider({ children }) {
     } catch (error) {
       dispatch({ type: 'rejected', payload: error.message });
     }
-  }
+  };
 
   return (
     <CitiesContext.Provider
