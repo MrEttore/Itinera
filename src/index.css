@@ -1,117 +1,118 @@
-/* Taken from getting started guide at: https://leafletjs.com/examples/quick-start/ */
 @import 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css';
 @import 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap';
 
 :root {
-  --color-brand--1: #ffb545;
-  --color-brand--2: #00c46a;
+    --color-brand--1: #ffb545;
+    --color-brand--2: #00c46a;
 
-  --color-dark--0: #0b1320;
-  --color-dark--1: #111a27;
-  --color-dark--2: #172231;
-  --color-light--1: #a9b3c2;
-  --color-light--2: #e6edf5;
-  --color-light--3: #ced7e0;
+    --color-dark--0: #0b1320;
+    --color-dark--1: #111a27;
+    --color-dark--2: #172231;
+    --color-light--1: #a9b3c2;
+    --color-light--2: #e6edf5;
+    --color-light--3: #ced7e0;
 
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-bg-strong: rgba(255, 255, 255, 0.14);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.18);
-  --glass-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-  --glass-blur: saturate(160%) blur(14px);
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-bg-strong: rgba(255, 255, 255, 0.14);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    --glass-blur: saturate(160%) blur(14px);
 
-  --gradient-brand: linear-gradient(
-    135deg,
-    var(--color-brand--2),
-    #2dd4bf 40%,
-    #60a5fa 100%
-  );
-  --gradient-surface: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0.02)
-  );
+    --gradient-brand: linear-gradient(
+        135deg,
+        var(--color-brand--2),
+        #2dd4bf 40%,
+        #60a5fa 100%
+    );
+    --gradient-surface: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.02)
+    );
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
 }
 
 html {
-  font-size: 62.5%;
-  box-sizing: border-box;
+    font-size: 62.5%;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Manrope', sans-serif;
-  color: var(--color-light--2);
-  font-weight: 400;
-  line-height: 1.6;
-  min-height: 100vh;
-  background: radial-gradient(
-      1200px circle at 10% 10%,
-      #1a2740 0%,
-      #0d1626 40%,
-      #0b1320 75%
-    )
-    fixed;
+    font-family: 'Manrope', sans-serif;
+    color: var(--color-light--2);
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+    background: radial-gradient(
+            1200px circle at 10% 10%,
+            #1a2740 0%,
+            #0d1626 40%,
+            #0b1320 75%
+        )
+        fixed;
 }
 
 label {
-  font-size: 1.6rem;
-  font-weight: 600;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 
 input,
 textarea {
-  width: 100%;
-  padding: 0.8rem 1.2rem;
-  font-family: inherit;
-  font-size: 1.6rem;
-  border: none;
-  border-radius: 10px;
-  background: var(--glass-bg);
-  border: var(--glass-border);
-  color: var(--color-light--2);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.08s ease;
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    font-family: inherit;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 10px;
+    background: var(--glass-bg);
+    border: var(--glass-border);
+    color: var(--color-light--2);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.08s ease;
 }
 
 input:focus {
-  outline: none;
-  background: var(--glass-bg-strong);
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.25);
+    outline: none;
+    background: var(--glass-bg-strong);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.25);
 }
 
 .cta:link,
 .cta:visited {
-  display: inline-block;
-  background: var(--gradient-brand);
-  color: #0b1320;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-size: 1.6rem;
-  font-weight: 600;
-  padding: 1rem 3rem;
-  border-radius: 999px;
-  box-shadow: 0 10px 20px rgba(32, 144, 129, 0.25);
+    display: inline-block;
+    background: var(--gradient-brand);
+    color: #0b1320;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 1rem 3rem;
+    border-radius: 999px;
+    box-shadow: 0 10px 20px rgba(32, 144, 129, 0.25);
 }
 
-/* Nice, subtle scrollbars */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
 }
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+    width: 8px;
+    height: 8px;
 }
 *::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.22);
-  border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
 }
 *::-webkit-scrollbar-track {
-  background: transparent;
+    background: transparent;
 }
