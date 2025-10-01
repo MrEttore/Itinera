@@ -1,79 +1,56 @@
-<p align="center">
-  <img src="./public/logo.svg" width="100"/>
-</p>
+# Itinera – Map‑based Travel Log
 
-# Itinera — Map‑based Travel Log
+Track where you’ve been. Click the map, reverse‑geocode the spot, add notes & a date. A compact React app that showcases real product thinking, clean state management and an engaging geospatial UI.
 
-Log the cities you’ve visited, when you were there, and notes—all on an interactive map.
+## ✨ Why this project matters
 
-## Overview
+Itinera isn’t a toy “todo list” – it demonstrates how you’d structure a small but realistic product: marketing pages + protected area, map integration, async flows, derived lists, and thoughtful UX states.
 
-Itinera is a small but realistic front‑end product that demonstrates building a modern React app with routing, protected areas, shared state, and a map experience. It’s designed to look and feel like a plausible MVP you could ship internally or as a side product.
+## 🚀 Core Features
 
-Why I built it:
+Single, focused experience:
 
-- Practice clean component architecture, Context + Reducer state management, and custom hooks.
-- Work with a map SDK (Leaflet via React‑Leaflet) and real‑world concerns like geolocation, reverse geocoding, and markers.
-- Simulate a client–server app with a JSON API, async loading, and error/empty states.
+1. Public marketing pages (Home, Product, Pricing)
+2. Fake auth gate → protected app layout
+3. Interactive map (Leaflet / OpenStreetMap) with clickable coordinates
+4. Reverse geocoding to prefill city + country and emoji flag
+5. Add trip metadata: date (datepicker) + freeform notes
+6. City & Country aggregate lists with active highlighting
+7. City detail page with contextual info & delete
+8. Loading, empty and error states baked in
 
-## Features
+## 🧱 Architecture at a glance
 
-- Authenticated app area (fake auth for demo) and public marketing pages
-    - Login with email/password to access the app
-    - Protected routes with redirect
-- Interactive map
-    - See all saved cities as markers (OpenStreetMap tiles via Leaflet)
-    - Click anywhere on the map to start adding a city at that location
-    - Optional: use your current geolocation to center the map
-- Add a city
-    - Reverse‑geocode the clicked location to prefill city and country
-    - Pick the visit date with a datepicker
-    - Add personal notes
-- City details
-    - Dedicated page with date formatting and quick link to Wikipedia
-    - Delete a city from the list
-- Lists and navigation
-    - Cities list with active item highlighting and inline delete
-    - Countries list aggregated from all saved cities
-- Robust UX states
-    - Loading spinners for network calls
-    - Friendly empty & error messages
+| Layer             | Responsibility                                   |
+| ----------------- | ------------------------------------------------ |
+| Pages / Layouts   | Route structure & protected shell                |
+| Context + Reducer | Auth (demo) + Cities domain state                |
+| Services          | API adapter (mock serverless + optimistic layer) |
+| Hooks             | Geolocation, URL coordinate extraction           |
+| Components        | Presentation + small state (form, map, lists)    |
+| Utils             | Formatting, emoji conversion                     |
 
-## Tech stack
+### Data Flow
 
-- React 18 + Vite
-- React Router v6 (routing, protected routes, nested layouts)
-- Context API + useReducer (auth + cities data)
-- React‑Leaflet + Leaflet (map, markers)
-- OpenStreetMap tiles (TileLayer)
-- react‑datepicker (date input UX)
-- JSON Server (mock REST API)
-- CSS Modules (component‑scoped styles)
-- ESLint + Prettier (with sorted imports plugin)
+Map click → form prefilled → create city (optimistic) → context reducer updates lists → map & lists react instantly.
 
-## Architecture notes
+## 🛠 Tech Highlights
 
-- Routing
-    - Public pages: `Homepage`, `Product`, `Pricing`, `Login`
-    - App area: `AppLayout` (protected) → `cities`, `countries`, `form`, and city details
-    - Lazy‑loaded routes via `React.lazy` + `Suspense` for faster initial load
-- State management
-    - Auth: `AuthContext` with a demo user and `login/logout`
-    - Cities: `CitiesContext` with reducer actions for load/create/delete
-    - Caching: city detail short‑circuit to avoid refetching if already selected
-- Data fetching
-    - `JSON Server` serves `/cities` and `/cities/:id` on `http://localhost:9000`
-    - Reverse geocoding via BigDataCloud to prefill city and country
-- Custom hooks
-    - `useGeolocation` — a thin wrapper over the browser Geolocation API
-    - `useUrlPosition` — read `lat`/`lng` from URL search params
-- UI/UX
-    - CSS Modules for local scoping
-    - Spinners, empty messaging, and error fallbacks
+- React 18 + Vite (fast DX)
+- React Router v6 (nested + protected routes)
+- Context API + `useReducer` (predictable domain updates)
+- React‑Leaflet + Leaflet (tile + marker layers)
+- Browser geolocation + reverse geocoding API
+- CSS Modules (scoped styling)
+- ESLint + Prettier + import sorting
 
-## Data model
+## 🧪 Mock Backend Strategy
 
-Each city saved by the app follows this shape:
+The app intentionally runs **stateless**: a Netlify Function (or local mock) returns an empty city list; all “writes” are optimistic echoes stored in memory/localStorage (currently cleared per reload). This shows how the UI can be architected for real persistence later without rewriting everything.
+
+Swap in a real backend later by replacing `src/services/apiClient.js`.
+
+## 🗂 Data Model (city)
 
 ```json
 {
@@ -87,82 +64,55 @@ Each city saved by the app follows this shape:
 }
 ```
 
-Backed by `JSON Server`, which provides standard REST endpoints:
-
-- GET `/cities` — list all cities
-- GET `/cities/:id` — fetch a single city
-- POST `/cities` — create a new city
-- DELETE `/cities/:id` — remove a city
-
-## Getting started
-
-Prerequisites
-
-- Node.js 18+ recommended
-
-Install dependencies
+## 🏁 Quick Start
 
 ```bash
 npm install
+npm run dev:netlify   # Full experience (API function + app)
+# or
+npm run dev           # Pure front-end dev
 ```
 
-Start the mock API (JSON Server)
+Open the printed URL, log in with any placeholder email/password (demo auth), click the map, add a city.
 
-```bash
-npm run server
-# Serves http://localhost:9000 from data/cities.json (with a slight delay to simulate network)
-```
+## 🧭 Using the App
 
-Start the front‑end dev server
+1. Log in (demo auth only)
+2. Pan / zoom map, click a location
+3. Form appears with city + country inferred
+4. Pick date & add notes → Save
+5. Explore lists (Cities / Countries) & open details
 
-```bash
-npm run dev
-# Vite will print the local URL (typically http://localhost:5173)
-```
-
-Login credentials (demo)
-
-```text
-Email: John.Doe@example.com
-Password: qwerty
-```
-
-## How to use the app
-
-1. Visit the homepage and click “Log in”. Use the demo credentials above.
-2. Enter the app area. You’ll see a sidebar with Cities and Countries.
-3. Click anywhere on the map to open the “Add city” form prefilled via reverse geocoding.
-4. Pick the date you visited and add notes. Submit to save.
-5. Click a city in the list to view details. Use the × icon to delete a city.
-
-## Project structure (excerpt)
+## 📂 Project Structure (excerpt)
 
 ```text
 src/
-  components/         # Reusable UI components (CityList, Map, Form, etc.)
-  context/            # Auth and Cities providers (Context + Reducer)
-  hooks/              # Custom hooks (geolocation, URL position)
-  pages/              # Route screens (public + protected)
-  utils/              # Small utilities (emoji, date formatting)
+  components/    # UI building blocks
+  context/       # Auth & Cities providers
+  hooks/         # useGeolocation, useUrlPosition
+  pages/         # Route screens
+  services/      # apiClient (mock adapter)
+  utils/         # Formatting helpers
 ```
 
-## What this demonstrates
+## ✅ What This Demonstrates
 
-- Product mindset: a coherent, plausible MVP with marketing pages and an app area
-- Modern React patterns: lazy‑loading, protected routes, context reducers, custom hooks
-- Async UX: loading, errors, empty states, and optimistic-ish flows
-- Third‑party integration: maps, geolocation, reverse geocoding
-- Code quality: ESLint, Prettier, import sorting, modular CSS
+- Product-style separation (marketing vs. app)
+- Clean domain reducer with minimal actions
+- Map + geolocation integration patterns
+- Optimistic mindset & decoupled data adapter
+- Strong UX affordances (loading / empty / error)
+- Readable, modular component structure
 
-## Roadmap / Next steps
+## 🔮 Possible Enhancements
 
-- Real authentication and user accounts
-- Persistent backend (e.g., Node/Express + DB) and per‑user data
-- Marker clustering and better mobile map gestures
-- Edit city entries; drag markers to adjust position
-- Offline support and PWA (cache tiles and city list)
-- Unit tests (Vitest + React Testing Library) and E2E (Playwright)
+- Real auth (JWT / OAuth) + multi-user data
+- Persistent database & real create/update flows
+- Edit & drag markers, photo attachments
+- Marker clustering & search
+- Offline-first / PWA support
+- Automated tests (Vitest + RTL + Playwright)
 
-## License
+## 📜 License
 
-This project is for learning and portfolio purposes.
+Portfolio / learning project. Feel free to explore or fork.
