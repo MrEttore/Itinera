@@ -6,7 +6,11 @@ import {
     useReducer,
 } from 'react';
 
-const API_URL = 'http://localhost:9000';
+import {
+    createCity as apiCreateCity,
+    deleteCity as apiDeleteCity,
+    getCities as apiGetCities,
+} from '../services/apiClient';
 
 const CitiesContext = createContext();
 
@@ -62,8 +66,7 @@ export function CitiesProvider({ children }) {
         const fetchCities = async () => {
             dispatch({ type: 'loading' });
             try {
-                const response = await fetch(`${API_URL}/cities`);
-                const data = await response.json();
+                const data = await apiGetCities();
                 dispatch({ type: 'cities/loaded', payload: data });
             } catch (error) {
                 dispatch({ type: 'rejected', payload: error.message });
@@ -77,28 +80,30 @@ export function CitiesProvider({ children }) {
             if (Number(id) === currentCity.id) return;
             dispatch({ type: 'loading' });
             try {
-                const response = await fetch(`${API_URL}/cities/${id}`);
-                const data = await response.json();
-                dispatch({ type: 'city/loaded', payload: data });
+                const found = cities.find((c) => String(c.id) === String(id));
+                if (found) {
+                    dispatch({ type: 'city/loaded', payload: found });
+                } else {
+                    const refreshed = await apiGetCities();
+                    dispatch({ type: 'cities/loaded', payload: refreshed });
+                    const again = refreshed.find(
+                        (c) => String(c.id) === String(id),
+                    );
+                    if (again)
+                        dispatch({ type: 'city/loaded', payload: again });
+                }
             } catch (error) {
                 dispatch({ type: 'rejected', payload: error.message });
             }
         },
-        [currentCity.id],
+        [currentCity.id, cities],
     );
 
     const createCity = async (newCity) => {
         dispatch({ type: 'loading' });
         try {
-            const response = await fetch(`${API_URL}/cities`, {
-                method: 'POST',
-                body: JSON.stringify(newCity),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const data = await response.json();
-            dispatch({ type: 'city/created', payload: data });
+            const created = await apiCreateCity(newCity);
+            dispatch({ type: 'city/created', payload: created });
         } catch (error) {
             dispatch({ type: 'rejected', payload: error.message });
         }
@@ -107,9 +112,7 @@ export function CitiesProvider({ children }) {
     const deleteCity = async (id) => {
         dispatch({ type: 'loading' });
         try {
-            await fetch(`${API_URL}/cities/${id}`, {
-                method: 'DELETE',
-            });
+            await apiDeleteCity(id);
             dispatch({ type: 'city/deleted', payload: id });
         } catch (error) {
             dispatch({ type: 'rejected', payload: error.message });
