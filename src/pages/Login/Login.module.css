@@ -1,39 +1,36 @@
 .login {
-  margin: 0;
-  padding: 2.5rem 5rem;
-  background-image: linear-gradient(
-      rgba(11, 19, 32, 0.6),
-      rgba(11, 19, 32, 0.6)
-    ),
-    url('/bg.png');
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  overflow: hidden;
+    margin: 0;
+    padding: 2.5rem 5rem;
+    background-image:
+        linear-gradient(rgba(11, 19, 32, 0.6), rgba(11, 19, 32, 0.6)),
+        url('/bg.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
 }
 
 .form {
-  background: var(--glass-bg);
-  border-radius: 16px;
-  padding: 2rem 3rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+    background: var(--glass-bg);
+    border-radius: 16px;
+    padding: 2rem 3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 
-  /* Different from other form */
-  width: 48rem;
-  margin: 8rem auto;
-  border: var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow: var(--glass-shadow);
+    width: 48rem;
+    margin: 8rem auto auto auto;
+    border: var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shadow);
 }
 
 .row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
