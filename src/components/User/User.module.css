@@ -1,25 +1,58 @@
 .user {
-  position: absolute;
-  top: 4.2rem;
-  right: 4.2rem;
-  background: var(--glass-bg);
-  padding: 1rem 1.4rem;
-  border-radius: 14px;
-  z-index: 999;
-  box-shadow: var(--glass-shadow);
-  border: var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--color-dark--0);
+    position: absolute;
+    top: 4.2rem;
+    right: 4.2rem;
+    background: var(--glass-bg);
+    padding: 1rem 1.4rem;
+    border-radius: 14px;
+    z-index: 999;
+    box-shadow: var(--glass-shadow);
+    border: var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-dark--0);
 
-  display: flex;
-  align-items: center;
-  gap: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
 }
 
 .user img {
-  border-radius: 100px;
-  height: 4rem;
+    border-radius: 100px;
+    height: 4rem;
+}
+
+.avatarWrapper {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    flex: 0 0 4rem;
+}
+
+.avatarSpinner {
+    position: absolute;
+    inset: 0;
+    border: 3px solid var(--color-dark--0);
+    border-top-color: transparent;
+    border-right-color: rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    animation: user-spin 0.8s linear infinite;
+    box-sizing: border-box;
+}
+
+.avatarHidden {
+    opacity: 0;
+}
+
+.avatarVisible {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes user-spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
